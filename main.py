@@ -1,10 +1,16 @@
 from nltk.parse import CoreNLPParser
 from tree import *
+import jieba
 
 parser = CoreNLPParser('http://localhost:59000')
 
 def parse_chinese(inputText):
-    out = parser.parse(parser.tokenize(u'%s'%inputText))
+    
+    #out = parser.parse(parser.tokenize(u'%s'%inputText))
+    out = jieba.cut(inputText, cut_all=False)
+    print(out)
+    out = parser.parse(out)
+
     root = list(out)[0]
     root.pretty_print()
     output = root.pformat()
@@ -66,26 +72,52 @@ def apply_reordering(node):
                 node.children = [node.children[1], node.children[0]]
                 noun = get_all_leaves(node.children[0])[-1]
                 #print(noun)
-                node = find_children(node.children[1],"M")
-                cl = node.children[0].value
-                node.children[0].value = f"$CL({cl},{noun})"
+                nodex = find_children(node.children[1],"M")
+                if nodex is not None:
+                    cl = nodex.children[0].value
+                    nodex.children[0].value = f"$CL({cl},{noun})"
 
             if children == "ADJP NP": # 白色 自行车
                 node.children = [node.children[1], node.children[0]]
 
             if children == "DP NP": # 白色 自行车
                 node.children = [node.children[1], node.children[0]]
+            
+            if children == "PN NN": # 白色 自行车
+                node.children = [node.children[1], node.children[0]]
+
+            if children == "NP NP": # 白色 自行车
+                node.children = [node.children[1], node.children[0]]
+            
+            if children == "NN NN": # 白色 自行车
+                node.children = [node.children[1], node.children[0]]
+            
 
         elif len(node.children) == 3:
             children = get_children_list(node)
             if children == "QP ADJP NP": # 我有两百只白狗。
                 node.children = [node.children[2], node.children[1], node.children[0]]
                 noun = get_all_leaves(node.children[0])[-1]
-                #print(noun)
-                node.children[0].value = f"$CL({cl},{noun})"
+                nodex = find_children(node.children[2],"M")
+                if nodex is not None:
+                    cl = nodex.children[0].value
+                    #print(cl)
+                    nodex.children[0].value = f"$CL({cl},{noun})"
             
-            if children == "DNP ADJP NP": # 我 的白色自行车。
+            elif children == "DNP ADJP NP": # 我 的白色自行车。
                 node.children = [node.children[2], node.children[1], node.children[0]]
+
+            elif children == "QP DNP NP":
+                print("XX")
+                node.children = [node.children[2], node.children[1], node.children[0]]
+                noun = get_all_leaves(node.children[0])[-1]
+                print(noun)
+                nodex = find_children(node.children[2],"M")
+                print(nodex)
+                if nodex is not None:
+                    cl = nodex.children[0].value
+                    #print(cl)
+                    nodex.children[0].value = f"$CL({cl},{noun})"
 
         elif len(node.children) == 4:
             children = get_children_list(node)
@@ -115,6 +147,8 @@ def apply_reordering(node):
             children = get_children_list(node)
             if children == "ADVP VP": # 很  高超
                 node.children = [node.children[1], node.children[0]]
+            elif children == "PP VP":
+                node.children = [node.children[1], node.children[0]]
 
     elif node.value == "LCP":
         if len(node.children) == 2:
@@ -122,6 +156,7 @@ def apply_reordering(node):
             if children == "NP LC": # 在 桌子 上
                 node.children = [node.children[1], node.children[0]]
 
+    
 
     for ch in node.children:
         apply_reordering(ch)
@@ -146,8 +181,8 @@ def process_reordering(inputText):
 
 if __name__ == "__main__":
     #process_reordering("我有两百只狗。")
-    #process_reordering("我 的两百只白狗。")
-    #process_reordering("我 的自行车是白色的。")
+    #process_reordering("我的两百只白狗。")
+    #process_reordering("我的自行车是白色的。")
     #process_reordering("这星期他会很忙。")
     #process_reordering("我 的日语相当差。")
     #process_reordering("她匆匆赶往机场。")
@@ -155,4 +190,10 @@ if __name__ == "__main__":
     #process_reordering("来看看伦敦的名胜。")
     #process_reordering("实际上我是专程来看你的。") #XXXXX
     #process_reordering("请把我列入名单中。") #xxxx
-    process_reordering("我 的 猫在桌子上。")
+    #process_reordering("我的猫在桌子上。")
+    #process_reordering("过了一会儿，我们在一些白杨树下面找到了一个遮阴的地方。")
+    #process_reordering("火车及时到达了。")
+    #process_reordering("坐在你妹妹旁边。")
+    #process_reordering("我懂一点儿德语。")
+    #process_reordering("你想要些番茄汁吗？")
+    process_reordering("许多灯照亮了街道。")
