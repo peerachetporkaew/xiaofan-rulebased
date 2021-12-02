@@ -7223,11 +7223,6 @@ EXAMPLE :
 DESC : 
 EXAMPLE : 
 
-会
-เป็น
-DESC : 
-EXAMPLE : 
-
 极
 มาก
 DESC : 
@@ -7799,7 +7794,7 @@ DESC :
 EXAMPLE : 
 
 是
-คือ/เป็น
+คือ/เป็น/_
 DESC : 
 EXAMPLE : 
 
@@ -9552,4 +9547,189 @@ EXAMPLE :
 แย่มาก
 DESC : 
 EXAMPLE :
+
+走 过去
+เดิน ไป
+DESC : 
+EXAMPLE :
+
+招手
+โบกมือ
+DESC : 
+EXAMPLE :
+
+的/DEL
+
+DESC
+EXAMPLE
+
+白色
+สีขาว
+DESC
+EXAMPLE
+
+。
+
+DESC
+EXAMPLE
+
+赶往
+รีบไปยัง
+DESC
+EXAMPLE
+
+匆匆
+อย่างเร่งรีบ
+DESC
+EXAMPLE
+
+机场
+สนามบิน
+DESC
+EXAMPLE
+
+看看
+ดู
+DESC
+EXAMPLE
+
+名胜
+สถานที่สำคัญ
+DESC
+EXAMPLE
+
+伦敦
+ลอนดอน
+DESC
+EXAMPLE
+
+上@P
+บน
+DESC
+EXAMPLE
+
+桌子
+โต๊ะ
+DESC
+EXAMPLE
+
+上车
+ขึ้นรถ
+DESC
+EXAMPLE
+
+被
+ถูก/โดน
+DESC
+EXAMPLE
+
+摧毁
+ทำลาย
+DESC
+EXAMPLE
+
+彻底
+พังพินาศ
+DESC
+EXAMPLE
+
+摧毁 了 彻底
+ทำลายจนหมดสิ้น
+DESC
+EXAMPLE
+
+壁垒
+ป้อมปราการ
+DESC
+EXAMPLE
+
+火车
+รถไฟ
+DESC
+EXAMPLE
+
+到达
+มาถึง
+DESC
+EXAMPLE
+
+及时
+ทันเวลา
+DESC
+EXAMPLE
+
+穿着
+สวม
+DESC
+EXAMPLE
+
+西装
+สูท
+DESC
+EXAMPLE
+
+黑
+ดำ
+DESC
+EXAMPLE
+
+一 $CL(套,西装)
+ชุดหนึ่ง
+DESC
+EXAMPLE
+
+脉搏
+ชีพจร
+DESC
+EXAMPLE
+
+跳
+เต้น
+DESC
+EXAMPLE
+
+很慢
+ช้ามาก
+DESC
+EXAMPLE
+
+得/DEL
+
+DESC
+EXAMPLE
+
+预定
+จอง
+1
+2
+
+房间
+ห้อง
+1
+2
+
+$CL(个,房间)
+ห้อง
+1
+2
+
+爱人
+คนรัก
+1
+2
+
+会 做饭 很
+ทำอาหารเก่งมาก
+1
+2
+
+做饭
+ทำอาหาร
+1
+2
+
+英语
+ภาษาอังกฤษ
+1
+2
 

@@ -24,7 +24,7 @@ class PhraseTranslator():
 
         dictItem = load_dictionary(modelfile)
         for k in dictItem:
-            self.root.addRule(k[0],k[1])
+            self.root.addRule(k[0],k[1] + "|"*(len(k[0].split())-1)*2)
 
 
     def process(self,wordList,start):

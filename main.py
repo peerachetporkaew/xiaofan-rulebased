@@ -153,11 +153,18 @@ def apply_reordering(node):
             elif children == "PP VP":
                 node.children = [node.children[1], node.children[0]]
 
+        if len(node.children) == 3:
+            children = get_children_list(node)
+            if children == "VV DER VP": # 跳 得 很慢
+                node.children[1].children[0].value = "得/DEL"
+
     elif node.value == "LCP":
         if len(node.children) == 2:
             children = get_children_list(node)
             if children == "NP LC": # 在 桌子 上
+                print("P")
                 node.children = [node.children[1], node.children[0]]
+                node.children[0].children[0].value = node.children[0].children[0].value + "@P"
     
     elif node.value == "IP":
         if len(node.children) == 4:
@@ -194,7 +201,9 @@ def translate(inputStr):
 if __name__ == "__main__":
 
 
-    translate("他招手叫我走过去。")
+    #translate("他招手叫我走过去。")
+    
+    translate("她会说日语和英语。")
 
     #process_reordering("我有两百只狗。")
     #process_reordering("我的两百只白狗。")

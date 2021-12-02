@@ -111,7 +111,7 @@ def beam_search(decodingTable,LM):
         beam = []
         for i in range(0,len(SET)):
             #pass #print "SET i",SET[i]
-            SET[i][2] = 1-(SET[i][0].count("|")*1.0 / len(SET[i][0]))  
+            SET[i][2] = 0+SET[i][0].count("|")
         
         SET.sort(key=lambda tup: tup[2])
         SET.reverse()
@@ -121,11 +121,12 @@ def beam_search(decodingTable,LM):
         pass #print "CURRENT STATE : %d, pass #print BEAM =>"%g
         #pass #print_beam(beam)
         pass #print "END BEAM"
-    pass #print "GOAL : "
-    
+    #print "GOAL : "
+    print(GOAL)
     for i in range(0,len(GOAL)):
             #pass #print "SET i",SET[i]
-            GOAL[i][2] = 1-(GOAL[i][0].count("|")*1.0 / len(GOAL[i][0]))
+            print(GOAL[i])
+            GOAL[i][2] = 0+GOAL[i][0].count("|")
     GOAL.sort(key=lambda tup: tup[2])
     pass #print_beam(GOAL)
     return GOAL[-1][0]
