@@ -1,8 +1,11 @@
 from nltk.parse import CoreNLPParser
-from tree import *
+from utils.tree import *
 import jieba
+from phrase_translator import PhraseTranslator
 
 parser = CoreNLPParser('http://localhost:59000')
+
+translator = PhraseTranslator("./dictionary/basic.txt")
 
 def parse_chinese(inputText):
     
@@ -155,9 +158,14 @@ def apply_reordering(node):
             children = get_children_list(node)
             if children == "NP LC": # 在 桌子 上
                 node.children = [node.children[1], node.children[0]]
+    
+    elif node.value == "IP":
+        if len(node.children) == 4:
+            children = get_children_list(node)
+            if children == "DP NP VP PU": # 这些 货物 定价 过高 。
+                node.children = [node.children[1], node.children[0], node.children[2], node.children[3]]
 
     
-
     for ch in node.children:
         apply_reordering(ch)
         #print("--")
@@ -176,15 +184,23 @@ def process_reordering(inputText):
     output = []
     get_leaves(y[0].children[0],output)
     print(output)
-    return output
+    return " ".join(output)
 
+def translate(inputStr):
+    out = process_reordering(inputStr)
+    trans = translator.translate(out)
+    print(trans)
 
 if __name__ == "__main__":
+
+
+    translate("他招手叫我走过去。")
+
     #process_reordering("我有两百只狗。")
     #process_reordering("我的两百只白狗。")
     #process_reordering("我的自行车是白色的。")
     #process_reordering("这星期他会很忙。")
-    #process_reordering("我 的日语相当差。")
+    #process_reordering("我的日语相当差。")
     #process_reordering("她匆匆赶往机场。")
     #process_reordering("他们衷心欢迎他。")
     #process_reordering("来看看伦敦的名胜。")
@@ -196,4 +212,8 @@ if __name__ == "__main__":
     #process_reordering("坐在你妹妹旁边。")
     #process_reordering("我懂一点儿德语。")
     #process_reordering("你想要些番茄汁吗？")
-    process_reordering("许多灯照亮了街道。")
+    #process_reordering("许多灯照亮了街道。")
+    #process_reordering("这些货物定价过高。")
+    #process_reordering("莱茵河发源于何处？")
+    #translate("我有两百只狗。")
+    
