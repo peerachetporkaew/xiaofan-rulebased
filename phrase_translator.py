@@ -1,8 +1,8 @@
 from utils.MultipleOutputFST_v06 import *
 from utils.NameEntityTemplate import *
-
+import codecs 
 def load_dictionary(fname):
-    fp = open(fname).readlines()
+    fp = codecs.open(fname,encoding="utf-8").readlines()
     dictItem = []
     for i in range(0,len(fp),5):
         dictItem.append((fp[i].strip(),fp[i+1].strip()+" "))
