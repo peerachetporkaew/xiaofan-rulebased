@@ -15,6 +15,8 @@ class PhraseTranslator():
         NED = NEDatabase()
         NEL = []
         NEL += [NE("อังกฤษ","LOC","England@LOC")]
+        NEL += [NE("football","SPORT","กีฬาฟุตบอล")]
+        NEL += [NE("Marry","PERSON","แมรี่")]
 
         for item in NEL:
             NED.add(item)
@@ -24,7 +26,7 @@ class PhraseTranslator():
 
         dictItem = load_dictionary(modelfile)
         for k in dictItem:
-            self.root.addRule(k[0],k[1] + "|"*(len(k[0].split())-1)*2)
+            self.root.addRule(k[0],k[1] + ""*(len(k[0].split())-1)*2)
 
 
     def process(self,wordList,start):
@@ -36,4 +38,5 @@ class PhraseTranslator():
 
 if __name__ == "__main__":
     translator = PhraseTranslator("dictionary/basic.txt")
-    translator.translate("ฉัน จะ ไป อังกฤษ")
+    translator.translate("I love Marry .")
+    translator.translate("I love football .")

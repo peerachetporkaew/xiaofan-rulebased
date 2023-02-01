@@ -1,3 +1,13 @@
+I love [@SPORT]
+ฉัน ชอบ {2}
+DESC :
+EXAMPLE :
+
+I love [@PERSON]
+ฉัน รัก {2}
+DESC :
+EXAMPLE :
+
 我
 ฉัน
 DESC : 
