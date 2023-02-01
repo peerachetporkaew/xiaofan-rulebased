@@ -31,7 +31,22 @@ EXAMPLE :
 今天
 วันนี้
 DESC : 
-EXAMPLE : 
+EXAMPLE :
+
+两百
+สองร้อย
+DESC : 
+EXAMPLE :
+
+$CL(只,狗)
+ตัว
+DESC : 
+EXAMPLE :
+
+ฉัน จะ ไป [@LOC]
+I will go to {3} .
+DESC :
+EXAMPLE :
 
 下午
 ตอนบ่าย

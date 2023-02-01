@@ -14,7 +14,7 @@ class PhraseTranslator():
 
         NED = NEDatabase()
         NEL = []
-        NEL += [NE("England","LOC","อังกฤษ@LOC")]
+        NEL += [NE("อังกฤษ","LOC","England@LOC")]
 
         for item in NEL:
             NED.add(item)
@@ -36,4 +36,4 @@ class PhraseTranslator():
 
 if __name__ == "__main__":
     translator = PhraseTranslator("dictionary/basic.txt")
-    translator.translate("我 123")
+    translator.translate("ฉัน จะ ไป อังกฤษ")

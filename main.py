@@ -83,16 +83,16 @@ def apply_reordering(node):
             if children == "ADJP NP": # 白色 自行车
                 node.children = [node.children[1], node.children[0]]
 
-            if children == "DP NP": # 白色 自行车
+            if children == "DP NP": # 那 自行车
                 node.children = [node.children[1], node.children[0]]
             
-            if children == "PN NN": # 白色 自行车
+            if children == "PN NN": # 我們 自行车
                 node.children = [node.children[1], node.children[0]]
 
             if children == "NP NP": # 白色 自行车
                 node.children = [node.children[1], node.children[0]]
             
-            if children == "NN NN": # 白色 自行车
+            if children == "NN NN": # 香港 自行车
                 node.children = [node.children[1], node.children[0]]
             
 
@@ -191,10 +191,14 @@ def process_reordering(inputText):
     output = []
     get_leaves(y[0].children[0],output)
     print(output)
+
+
     return " ".join(output)
 
 def translate(inputStr):
-    out = process_reordering(inputStr)
+    out = process_reordering(inputStr) # Analysis and Transfer
+    print("Transfer : ",out)
+    
     trans = translator.translate(out)
     print(trans)
 
@@ -203,9 +207,10 @@ if __name__ == "__main__":
 
     #translate("他招手叫我走过去。")
     
-    translate("她会说日语和英语。")
+    #translate("她会说日语和英语。")
 
-    #process_reordering("我有两百只狗。")
+    translate("我有两百只狗。")
+
     #process_reordering("我的两百只白狗。")
     #process_reordering("我的自行车是白色的。")
     #process_reordering("这星期他会很忙。")
